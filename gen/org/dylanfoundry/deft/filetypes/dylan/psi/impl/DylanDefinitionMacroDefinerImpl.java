@@ -11,22 +11,22 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanSlotDeclarationImpl extends ASTWrapperPsiElement implements DylanSlotDeclaration {
+public class DylanDefinitionMacroDefinerImpl extends ASTWrapperPsiElement implements DylanDefinitionMacroDefiner {
 
-  public DylanSlotDeclarationImpl(ASTNode node) {
+  public DylanDefinitionMacroDefinerImpl(ASTNode node) {
     super(node);
   }
 
   @Override
-  @Nullable
-  public DylanExpression getExpression() {
-    return findChildByClass(DylanExpression.class);
+  @NotNull
+  public DylanMacroDefinitionTail getMacroDefinitionTail() {
+    return findNotNullChildByClass(DylanMacroDefinitionTail.class);
   }
 
   @Override
   @Nullable
-  public DylanInitSpecifications getInitSpecifications() {
-    return findChildByClass(DylanInitSpecifications.class);
+  public DylanMainRuleSet getMainRuleSet() {
+    return findChildByClass(DylanMainRuleSet.class);
   }
 
   @Override
@@ -37,18 +37,12 @@ public class DylanSlotDeclarationImpl extends ASTWrapperPsiElement implements Dy
 
   @Override
   @NotNull
-  public DylanSemicolonFragment getSemicolonFragment() {
-    return findNotNullChildByClass(DylanSemicolonFragment.class);
-  }
-
-  @Override
-  @NotNull
-  public DylanVariable getVariable() {
-    return findNotNullChildByClass(DylanVariable.class);
+  public DylanVariableName getVariableName() {
+    return findNotNullChildByClass(DylanVariableName.class);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitSlotDeclaration(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitDefinitionMacroDefiner(this);
     else super.accept(visitor);
   }
 

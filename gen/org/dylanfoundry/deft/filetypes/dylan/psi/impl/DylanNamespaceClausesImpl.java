@@ -11,26 +11,26 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanVariableNameImpl extends ASTWrapperPsiElement implements DylanVariableName {
+public class DylanNamespaceClausesImpl extends ASTWrapperPsiElement implements DylanNamespaceClauses {
 
-  public DylanVariableNameImpl(ASTNode node) {
+  public DylanNamespaceClausesImpl(ASTNode node) {
     super(node);
   }
 
   @Override
-  @Nullable
-  public DylanEscapedName getEscapedName() {
-    return findChildByClass(DylanEscapedName.class);
+  @NotNull
+  public List<DylanNamespaceClause> getNamespaceClauseList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, DylanNamespaceClause.class);
   }
 
   @Override
-  @Nullable
-  public DylanNonexpressionWord getNonexpressionWord() {
-    return findChildByClass(DylanNonexpressionWord.class);
+  @NotNull
+  public List<DylanSemicolonFragment> getSemicolonFragmentList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, DylanSemicolonFragment.class);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitVariableName(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitNamespaceClauses(this);
     else super.accept(visitor);
   }
 

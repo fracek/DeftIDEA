@@ -11,26 +11,20 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanConstituentImpl extends ASTWrapperPsiElement implements DylanConstituent {
+public class DylanLibraryDefinitionTailImpl extends ASTWrapperPsiElement implements DylanLibraryDefinitionTail {
 
-  public DylanConstituentImpl(ASTNode node) {
+  public DylanLibraryDefinitionTailImpl(ASTNode node) {
     super(node);
   }
 
   @Override
   @Nullable
-  public DylanExpression getExpression() {
-    return findChildByClass(DylanExpression.class);
-  }
-
-  @Override
-  @Nullable
-  public DylanNonExpressionConstituent getNonExpressionConstituent() {
-    return findChildByClass(DylanNonExpressionConstituent.class);
+  public DylanVariableName getVariableName() {
+    return findChildByClass(DylanVariableName.class);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitConstituent(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitLibraryDefinitionTail(this);
     else super.accept(visitor);
   }
 

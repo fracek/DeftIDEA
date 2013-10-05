@@ -11,20 +11,20 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanSourceRecordImpl extends ASTWrapperPsiElement implements DylanSourceRecord {
+public class DylanMacroDefinitionTailImpl extends ASTWrapperPsiElement implements DylanMacroDefinitionTail {
 
-  public DylanSourceRecordImpl(ASTNode node) {
+  public DylanMacroDefinitionTailImpl(ASTNode node) {
     super(node);
   }
 
   @Override
-  @NotNull
-  public DylanBody getBody() {
-    return findNotNullChildByClass(DylanBody.class);
+  @Nullable
+  public DylanVariableName getVariableName() {
+    return findChildByClass(DylanVariableName.class);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitSourceRecord(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitMacroDefinitionTail(this);
     else super.accept(visitor);
   }
 

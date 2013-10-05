@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DylanOrdinaryName extends PsiElement {
+public interface DylanSlotDeclarations extends PsiElement {
 
-  @Nullable
-  DylanEscapedName getEscapedName();
-
-  @Nullable
-  DylanNonexpressionWord getNonexpressionWord();
+  @NotNull
+  List<DylanSlotDeclaration> getSlotDeclarationList();
 
 }

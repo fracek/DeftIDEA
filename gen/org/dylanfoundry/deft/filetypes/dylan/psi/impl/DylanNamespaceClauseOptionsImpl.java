@@ -11,26 +11,20 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanNonExpressionConstituentImpl extends ASTWrapperPsiElement implements DylanNonExpressionConstituent {
+public class DylanNamespaceClauseOptionsImpl extends ASTWrapperPsiElement implements DylanNamespaceClauseOptions {
 
-  public DylanNonExpressionConstituentImpl(ASTNode node) {
+  public DylanNamespaceClauseOptionsImpl(ASTNode node) {
     super(node);
   }
 
   @Override
-  @Nullable
-  public DylanDefinition getDefinition() {
-    return findChildByClass(DylanDefinition.class);
-  }
-
-  @Override
-  @Nullable
-  public DylanLocalDeclaration getLocalDeclaration() {
-    return findChildByClass(DylanLocalDeclaration.class);
+  @NotNull
+  public List<DylanVariableName> getVariableNameList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, DylanVariableName.class);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitNonExpressionConstituent(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitNamespaceClauseOptions(this);
     else super.accept(visitor);
   }
 

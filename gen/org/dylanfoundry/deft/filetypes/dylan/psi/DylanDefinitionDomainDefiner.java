@@ -5,12 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DylanVariableName extends PsiElement {
+public interface DylanDefinitionDomainDefiner extends PsiElement {
+
+  @NotNull
+  DylanBracketedFragment getBracketedFragment();
 
   @Nullable
-  DylanEscapedName getEscapedName();
+  DylanModifiers getModifiers();
 
-  @Nullable
-  DylanNonexpressionWord getNonexpressionWord();
+  @NotNull
+  DylanVariableName getVariableName();
 
 }

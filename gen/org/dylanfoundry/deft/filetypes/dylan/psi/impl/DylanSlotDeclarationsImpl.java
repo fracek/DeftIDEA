@@ -11,26 +11,20 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanNonStatementListFragmentImpl extends ASTWrapperPsiElement implements DylanNonStatementListFragment {
+public class DylanSlotDeclarationsImpl extends ASTWrapperPsiElement implements DylanSlotDeclarations {
 
-  public DylanNonStatementListFragmentImpl(ASTNode node) {
+  public DylanSlotDeclarationsImpl(ASTNode node) {
     super(node);
   }
 
   @Override
-  @Nullable
-  public DylanListFragment getListFragment() {
-    return findChildByClass(DylanListFragment.class);
-  }
-
-  @Override
-  @Nullable
-  public DylanSimpleFragment getSimpleFragment() {
-    return findChildByClass(DylanSimpleFragment.class);
+  @NotNull
+  public List<DylanSlotDeclaration> getSlotDeclarationList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, DylanSlotDeclaration.class);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitNonStatementListFragment(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitSlotDeclarations(this);
     else super.accept(visitor);
   }
 

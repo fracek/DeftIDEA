@@ -5,21 +5,18 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DylanSlotDeclaration extends PsiElement {
+public interface DylanDefinitionMethodDefiner extends PsiElement {
 
-  @Nullable
-  DylanExpression getExpression();
+  @NotNull
+  DylanBodyFragment getBodyFragment();
 
-  @Nullable
-  DylanInitSpecifications getInitSpecifications();
+  @NotNull
+  DylanMethodDefinitionTail getMethodDefinitionTail();
 
   @Nullable
   DylanModifiers getModifiers();
 
   @NotNull
-  DylanSemicolonFragment getSemicolonFragment();
-
-  @NotNull
-  DylanVariable getVariable();
+  DylanVariableName getVariableName();
 
 }

@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DylanNonStatementListFragment extends PsiElement {
+public interface DylanClassDefinitionTail extends PsiElement {
 
   @Nullable
-  DylanListFragment getListFragment();
-
-  @Nullable
-  DylanSimpleFragment getSimpleFragment();
+  DylanVariableName getVariableName();
 
 }

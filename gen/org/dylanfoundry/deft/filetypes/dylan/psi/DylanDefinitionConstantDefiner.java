@@ -5,10 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DylanNonStatementBasicFragment extends PsiElement {
-
-  @Nullable
-  DylanBasicFragment getBasicFragment();
+public interface DylanDefinitionConstantDefiner extends PsiElement {
 
   @Nullable
   DylanBracketedFragment getBracketedFragment();
@@ -23,7 +20,13 @@ public interface DylanNonStatementBasicFragment extends PsiElement {
   DylanHashWord getHashWord();
 
   @Nullable
+  DylanModifiers getModifiers();
+
+  @Nullable
   DylanOperator getOperator();
+
+  @Nullable
+  DylanStatement getStatement();
 
   @Nullable
   DylanVariableName getVariableName();

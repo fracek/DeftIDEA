@@ -11,26 +11,32 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanListFragmentImpl extends ASTWrapperPsiElement implements DylanListFragment {
+public class DylanDefinitionDomainDefinerImpl extends ASTWrapperPsiElement implements DylanDefinitionDomainDefiner {
 
-  public DylanListFragmentImpl(ASTNode node) {
+  public DylanDefinitionDomainDefinerImpl(ASTNode node) {
     super(node);
   }
 
   @Override
-  @Nullable
-  public DylanNonStatementListFragment getNonStatementListFragment() {
-    return findChildByClass(DylanNonStatementListFragment.class);
+  @NotNull
+  public DylanBracketedFragment getBracketedFragment() {
+    return findNotNullChildByClass(DylanBracketedFragment.class);
   }
 
   @Override
   @Nullable
-  public DylanStatement getStatement() {
-    return findChildByClass(DylanStatement.class);
+  public DylanModifiers getModifiers() {
+    return findChildByClass(DylanModifiers.class);
+  }
+
+  @Override
+  @NotNull
+  public DylanVariableName getVariableName() {
+    return findNotNullChildByClass(DylanVariableName.class);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitListFragment(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitDefinitionDomainDefiner(this);
     else super.accept(visitor);
   }
 

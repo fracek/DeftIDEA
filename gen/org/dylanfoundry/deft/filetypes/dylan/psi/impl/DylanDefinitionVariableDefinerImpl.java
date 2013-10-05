@@ -11,9 +11,9 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanSimpleFragmentImpl extends ASTWrapperPsiElement implements DylanSimpleFragment {
+public class DylanDefinitionVariableDefinerImpl extends ASTWrapperPsiElement implements DylanDefinitionVariableDefiner {
 
-  public DylanSimpleFragmentImpl(ASTNode node) {
+  public DylanDefinitionVariableDefinerImpl(ASTNode node) {
     super(node);
   }
 
@@ -43,8 +43,20 @@ public class DylanSimpleFragmentImpl extends ASTWrapperPsiElement implements Dyl
 
   @Override
   @Nullable
+  public DylanModifiers getModifiers() {
+    return findChildByClass(DylanModifiers.class);
+  }
+
+  @Override
+  @Nullable
   public DylanOperator getOperator() {
     return findChildByClass(DylanOperator.class);
+  }
+
+  @Override
+  @Nullable
+  public DylanStatement getStatement() {
+    return findChildByClass(DylanStatement.class);
   }
 
   @Override
@@ -54,7 +66,7 @@ public class DylanSimpleFragmentImpl extends ASTWrapperPsiElement implements Dyl
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitSimpleFragment(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitDefinitionVariableDefiner(this);
     else super.accept(visitor);
   }
 

@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DylanVariableName extends PsiElement {
+public interface DylanMacroDefinitionTail extends PsiElement {
 
   @Nullable
-  DylanEscapedName getEscapedName();
-
-  @Nullable
-  DylanNonexpressionWord getNonexpressionWord();
+  DylanVariableName getVariableName();
 
 }

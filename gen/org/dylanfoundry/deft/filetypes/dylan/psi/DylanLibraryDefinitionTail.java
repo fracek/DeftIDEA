@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DylanConstituents extends PsiElement {
+public interface DylanLibraryDefinitionTail extends PsiElement {
 
-  @NotNull
-  List<DylanConstituent> getConstituentList();
+  @Nullable
+  DylanVariableName getVariableName();
 
 }

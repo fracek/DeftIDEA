@@ -11,16 +11,10 @@ import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
 
-public class DylanNonStatementBodyFragmentImpl extends ASTWrapperPsiElement implements DylanNonStatementBodyFragment {
+public class DylanDefinitionConstantDefinerImpl extends ASTWrapperPsiElement implements DylanDefinitionConstantDefiner {
 
-  public DylanNonStatementBodyFragmentImpl(ASTNode node) {
+  public DylanDefinitionConstantDefinerImpl(ASTNode node) {
     super(node);
-  }
-
-  @Override
-  @Nullable
-  public DylanBodyFragment getBodyFragment() {
-    return findChildByClass(DylanBodyFragment.class);
   }
 
   @Override
@@ -37,12 +31,6 @@ public class DylanNonStatementBodyFragmentImpl extends ASTWrapperPsiElement impl
 
   @Override
   @Nullable
-  public DylanDefinition getDefinition() {
-    return findChildByClass(DylanDefinition.class);
-  }
-
-  @Override
-  @Nullable
   public DylanFunctionMacroCall getFunctionMacroCall() {
     return findChildByClass(DylanFunctionMacroCall.class);
   }
@@ -55,8 +43,8 @@ public class DylanNonStatementBodyFragmentImpl extends ASTWrapperPsiElement impl
 
   @Override
   @Nullable
-  public DylanLocalDeclaration getLocalDeclaration() {
-    return findChildByClass(DylanLocalDeclaration.class);
+  public DylanModifiers getModifiers() {
+    return findChildByClass(DylanModifiers.class);
   }
 
   @Override
@@ -67,8 +55,8 @@ public class DylanNonStatementBodyFragmentImpl extends ASTWrapperPsiElement impl
 
   @Override
   @Nullable
-  public DylanSemicolonFragment getSemicolonFragment() {
-    return findChildByClass(DylanSemicolonFragment.class);
+  public DylanStatement getStatement() {
+    return findChildByClass(DylanStatement.class);
   }
 
   @Override
@@ -78,7 +66,7 @@ public class DylanNonStatementBodyFragmentImpl extends ASTWrapperPsiElement impl
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitNonStatementBodyFragment(this);
+    if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitDefinitionConstantDefiner(this);
     else super.accept(visitor);
   }
 

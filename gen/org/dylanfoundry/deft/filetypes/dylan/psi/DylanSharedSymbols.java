@@ -5,9 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DylanBody extends PsiElement {
-
-  @NotNull
-  DylanConstituents getConstituents();
+public interface DylanSharedSymbols extends PsiElement {
 
 }
