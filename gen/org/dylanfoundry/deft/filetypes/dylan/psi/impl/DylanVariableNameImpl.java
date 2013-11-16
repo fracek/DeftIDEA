@@ -10,6 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static org.dylanfoundry.deft.filetypes.dylan.psi.DylanTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import org.dylanfoundry.deft.filetypes.dylan.psi.*;
+import com.intellij.psi.PsiReference;
 
 public class DylanVariableNameImpl extends ASTWrapperPsiElement implements DylanVariableName {
 
@@ -26,6 +27,11 @@ public class DylanVariableNameImpl extends ASTWrapperPsiElement implements Dylan
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DylanVisitor) ((DylanVisitor)visitor).visitVariableName(this);
     else super.accept(visitor);
+  }
+
+  @Nullable
+  public PsiReference getReference() {
+    return DylanPsiImplUtil.getReference(this);
   }
 
 }

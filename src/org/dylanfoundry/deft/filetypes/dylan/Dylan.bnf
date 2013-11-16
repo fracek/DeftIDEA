@@ -542,6 +542,9 @@ private variables ::= variable (COMMA variable)*
 variable ::= variable_name COLON_COLON operand_expr | variable_name
 
 variable_name ::= ordinary_name | VARIABLE_IGNORE
+  {
+    methods=[getReference]
+  }
 
 /* Expression, page 424-425 */
 
